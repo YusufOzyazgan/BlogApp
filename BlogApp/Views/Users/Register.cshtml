@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+@model RegisterViewModel
+<div class="row justify-content-center">
+    
+    <div class="card col-6 ">
+        <div class="card-header "><h1 class="card-title text-center">Register</h1></div>
+        <div class="card-body">
+            <form action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Name</label>
+                    <input type="text" asp-for="Name" class="form-control">
+                    <span asp-validation-for="Name"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label">Username</label>
+                    <input type="text" asp-for="UserName" class="form-control">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input type="email" asp-for="Email" class="form-control">
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Password</label>
+                    <input type="password" asp-for="Password" class="form-control">
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label">ConfirmPassword</label>
+                    <input type="password" asp-for="ConfirmPassword" class="form-control">
+                    <span asp-validation-for="ConfirmPassword"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+        </div>
+    </div>
+    
+</div>
