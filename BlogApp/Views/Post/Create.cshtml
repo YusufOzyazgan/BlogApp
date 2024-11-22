@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Create Post";
+}
+
+@model CreatePostViewModel
+<div class="row justify-content-center">
+
+    <div class="card col-10 ">
+        <div class="card-header "><h1 class="card-title text-center">Create Post</h1></div>
+        <div class="card-body">
+            <form action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label">Title</label>
+                    <textarea type="text" asp-for="Title" class="form-control"> </textarea>
+                    <span asp-validation-for="Title"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Description</label>
+                    <textarea type="text" asp-for="Description" class="form-control"> </textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Content" class="form-label">Content</label>
+                    <textarea type="text" asp-for="Content" class="form-control"></textarea>
+                    <span asp-validation-for="Content"> </span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Url" class="form-label">Url</label>
+                    <input type="text" asp-for="Url" class="form-control" />
+                    <span asp-validation-for="Url"> </span>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.5.1/tinymce.min.js" ></script>
+    <script>
+        tinymce.init({
+            selector: '#Content'
+         });
+    </script>
+}
+

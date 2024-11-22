@@ -17,8 +17,13 @@
             </div>
             <br />
             <img src="~/img/@Model.ImageUrl" class="img-fluid rounded" alt="">
+           
+            <ul class="list-inline my-3 border-bottom">
+                <li class="list-inline item mb-2"><i class="mb-2 bi bi-calendar"> </i> @Model.PublishedOn.ToLongDateString()</li>
+                <li class="list-inline item mb-2"><i class="bi bi-person-circle"></i> <a class="text-decoration-none"href="/users/@Model.UserId">@Model.User.Name</a></li>
+            </ul>
             <br><br>
-            <div>@Model.Content</div>
+            <div>@Html.Raw(@Model.Content)</div>
         </div>
         <div class="bg-white mt-3">
             <div class="card border-0">
@@ -33,7 +38,9 @@
                                 <img src="/img/@comment.User.imageUrl" class="avatar rounded-circle float-start me-3" alt="Picture" />
                                 <div>
                                     <div class="mb-2 d-flex">
-                                        <h6 class="me-2">@comment.User.UserName</h6>
+                                        <h6 class="me-2">
+                                            <a class="text-decoration-none" href="/users/@comment.UserId">@comment.User.Name</a>
+                                            </h6>
                                         <small>@comment.PublishedOn.ToShortDateString()</small>
 
                                     </div>
@@ -63,7 +70,7 @@
                     }
                     else
                     {
-                         <div>
+                        <div>
                             <h4 class="mb-3">Yorum Ekle</h4>
 
                             <form action="#">
@@ -71,10 +78,9 @@
 
                                 <div class="mb-3">
 
-                                    <textarea type="text" name="Text" id="Text" readonly="readonly" rows="3" class="form-control text-danger" >Yorum yapmak için giriş yapmanız gerekiyor.</textarea>
+                                    <textarea type="text" name="Text" id="Text" readonly="readonly" rows="3" class="form-control text-danger">Yorum yapmak için giriş yapmanız gerekiyor.</textarea>
                                 </div>
                                 <div class="mb-3">
-                                    
                                 </div>
                             </form>
                         </div>
@@ -95,7 +101,7 @@
 <ul>
 </ul>
 @section Scripts {
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"> </script>
     <script type="text/javascript">
         $(document).ready(function () {
             $("#btnYorumKayıt").click(function () {
@@ -112,22 +118,22 @@
                     success: function (yorum) {
                         var commentCount = parseInt($("#CommentCount").text());
                         console.log(yorum);
-                           var date = new Date(yorum.publishedOn);
-                           $("#comments").append(`
-                                           <div class="my-4 d-flex">
+                        var date = new Date(yorum.publishedOn);
+                        $("#comments").append(`
+                                                                   <div class="my-4 d-flex">
 
-                                                   <img src="/img/${yorum.image}" class="avatar rounded-circle float-start me-3" alt="Picture" />
-                                                   <div>
-                                                       <div class="mb-2 d-flex">
-                                                           <h6 class="me-2">${yorum.userName}</h6>
-                           <small>${date.toLocaleDateString()}</small>
+                                                                           <img src="/img/${yorum.image}" class="avatar rounded-circle float-start me-3" alt="Picture" />
+                                                                           <div>
+                                                                               <div class="mb-2 d-flex">
+                                                                                   <h6 class="me-2">${yorum.userName}</h6>
+                                                   <small>${date.toLocaleDateString()}</small>
 
-                                                       </div>
-                                                       <p>${yorum.text }</p>
-                                                   </div>
-                                               </div>
+                                                                               </div>
+                                                                               <p>${yorum.text}</p>
+                                                                           </div>
+                                                                       </div>
 
-                        `);
+                                                `);
                         $("#UserName").val("");
                         $("#Text").val("");
                         $("#CommentCount").text(commentCount + 1);

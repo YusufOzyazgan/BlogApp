@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+ 
+}
+@model User
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="bg-white p-2">
+            <img class="img-fluid" src="/img/@Model.imageUrl" alt="">
+        </div>
+    </div>
+    <div class="col-md-10">
+        <div class="bg-white p-2">
+            <h4><i class="bi bi-person-fill"></i> @Model.Name</h4>
+            <h6><i class="bi bi-person"></i></i> @Model.UserName</h6>
+            <h6><i class="bi bi-envelope"></i> @Model.Email</h6>
+
+            <hr>
+
+            <div id="posts">
+                <h5 class="my-2">Yayınlanan Gönderiler</h5>
+                <hr>
+                <ul class="list-group">
+                    @foreach (var post in Model.Posts)
+                    {
+
+                        <li class="list-group-item"><a style="color: black; text-decoration: none;" onmouseover="this.style.color='LightSeaGreen'" onmouseout="this.style.color='black'" class="text-decoration-none " href="/posts/details/@post.Url"><i class="bi bi-arrow-right-short"></i> @post.Title</a></li>
+
+                    }
+                </ul>
+            </div>
+            <div id="comments">
+                <h5 class="my-4">Yorumlar</h5>
+                <hr>
+                <ul class="list-group">
+                    @foreach (var comment in Model.Comments)
+                    {
+
+                        <li class="list-group-item">
+                            <a 
+                               onmouseover="this.style.color='LightSeaGreen'"
+                               onmouseout="this.style.color='black'"
+                               class="text-black text-decoration-none" 
+                               href=" /posts/details/@comment.Posts.Url"><i class="bi bi-chat-text"></i> @comment.Text <i><u>[@comment.Posts.Title]</u></i></a>
+                        </li>
+
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>

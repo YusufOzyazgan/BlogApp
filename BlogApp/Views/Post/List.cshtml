@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Posts";
+}
+
+@model List<Post>
+<div class="row ">
+    <div class="col-12">
+        <h2>Post List</h2>
+
+        <a href="/post/create" class="btn btn-primary">Post Ekle</a>
+
+        <br /> <br />
+
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th style="width:200px;">Image</th>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Is Active</th>
+                    <th tyle="width:120px;">Edit </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td> <img src="/img/@item.ImageUrl" class="img-fluid" /></td>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item.IsActive</td>
+                        <td>
+                            <a href="/post/edit/@item.PostId" class="btn btn-sm btn-info">Edit</a>
+                            <a href="/post/delete/@item.PostId" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+
+
+                    </tr>
+
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+
+
+
